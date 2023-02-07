@@ -61,7 +61,9 @@ export default class LayerSelector extends M.Plugin {
     this.map_ = map;
     // panel para agregar control - no obligatorio
     this.panel_ = new M.ui.Panel('panelLayerSelector', {
-      collapsible: false,
+      // collapsible: false,
+      collapsible: true,
+      collapsedButtonClass: 'g-cartografia-capas2',
       className: 'm-layer-selector',
       position: M.ui.position.TR,
     });
