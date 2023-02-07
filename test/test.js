@@ -1,9 +1,11 @@
 import LayerSelector from 'facade/layerselector';
 
 
-// fetch("https://emiliopardo.github.io/integracion-plugins/visores/web-components/configurations/ieca/fullpage/iepabra.json")
-fetch("https://emiliopardo.github.io/integracion-plugins/visores/web-components/configurations/ieca/fullpage/grid_poblacion.json")
+fetch("https://emiliopardo.github.io/integracion-plugins/visores/web-components/configurations/ieca/fullpage/iepabra.json")
+// fetch("https://emiliopardo.github.io/integracion-plugins/visores/web-components/configurations/ieca/fullpage/grid_poblacion.json")
 // fetch("https://emiliopardo.github.io/integracion-plugins/visores/web-components/configurations/ieca/fullpage/razon_mortalidad_250m.json")
+// fetch("https://emiliopardo.github.io/integracion-plugins/visores/web-components/configurations/ieca/fullpage/epla.json")
+// fetch("https://emiliopardo.github.io/integracion-plugins/visores/web-components/configurations/ieca/fullpage/direst.json")
   .then(res => {
     if (res.ok) {
       return res.json()
