@@ -1,3 +1,18 @@
+.m-areas>div.m-area.m-right>div.m-panel.m-layer-selector.collapsed>button.m-panel-btn {
+  border-radius: 20px;
+  float: left;
+  color: darkred;
+}
+
+.m-areas>div.m-area>div.m-panel.m-layer-selector>button.m-panel-btn {
+  position: absolute;
+  left: -40px;
+  background-color: darkred;
+  color: #fff;
+  z-index: 999999;
+  box-shadow: 0 2px 4px rgba(0,0,0,.2),0 -1px 0 rgba(0,0,0,.02);
+}
+
 .m-panel.m-layer-selector.opened.no-collapsible {
   order: -999 !important;
   margin-top: 0px !important;
@@ -23,12 +38,13 @@
 
 #select-container {
   float: left;
+  display: flex;
 }
 
 #parentSelectLayer {
   font-size: 0.8em;
   height: 20px;
-  width: 25%;
+  width: "fix-content";
   margin-right: 5px;
   display: inline-block;
 }
