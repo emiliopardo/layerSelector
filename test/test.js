@@ -83,10 +83,13 @@ fetch("https://emiliopardo.github.io/integracion-plugins/visores/web-components/
       }
     });
 
-    mapajs.addControls(["layerswitcher"]);
+    //mapajs.addControls(["layerswitcher"]);
     mapajs.zoomToMaxExtent();
     //Se cargan los layers de overlay en el mapa
     mapajs.addLayers(arrayoverlaylayers);
+
+    const simpleLegend = new M.plugin.Simplelegend();
+    mapajs.addPlugin(simpleLegend);
 
     const configLayerSelector = {
       nested: json.configuration.nested,
@@ -99,6 +102,11 @@ fetch("https://emiliopardo.github.io/integracion-plugins/visores/web-components/
     const layerSelector = new LayerSelector(configLayerSelector);
 
     mapajs.addPlugin(layerSelector);
+
+    // mapajs.on(M.evt.ADDED_LAYER, ()=>{
+    //   console.log("se cargo una capa")
+    //   simpleLegend.updateLegend();
+    // })
 
 
   }).catch(err => {
