@@ -7,7 +7,7 @@
 import LayerSelectorImplControl from 'impl/layerselectorcontrol';
 import template from 'templates/layerselector';
 import templateOptgroup from 'templates/layerselectorOptgroup';
-import templateNested from 'templates/layerselectorNested';
+import templateNestedOptgroup from 'templates/layerselectorNestedOptgroup';
 
 export default class LayerSelectorControl extends M.Control {
   /**
@@ -55,9 +55,6 @@ export default class LayerSelectorControl extends M.Control {
     this.loadLayers()
 
     this.selectLayer = html.querySelector("select#selectLayer");
-    // console.log(this.selectLayer);
-    // console.log(this.config_.legendLayers)
-
     //listener para controlar el evento change del selectLayer
     this.selectLayer.addEventListener("change", () => {
       if (this.config_.selectedLayerId == "none") {
@@ -82,6 +79,17 @@ export default class LayerSelectorControl extends M.Control {
         })
       }
     })
+
+    this.parentSelectLayer = html.querySelector("select#parentSelectLayer");
+
+    if (typeof (this.parentSelectLayer) != "undefined") {
+      this.parentSelectLayer.addEventListener("change", () => {
+        let value = this.parentSelectLayer.value;
+
+        console.log(value)
+      })
+    }
+
 
     // let selectContainer = html.querySelector("div#select-container");
     // if (this.config_.legendLayers.length > 1) {
@@ -296,21 +304,47 @@ export default class LayerSelectorControl extends M.Control {
       this.template = templateOptgroup;
     }
 
-    //Construccion de los select anidados
-    if (this.config_.nested) {
+    //Construccion de los select anidados con optgroup
+    if (this.config_.nested && this.config_.group) {
+      let groups = new Array();
+
       let parentSelectOptions = new Array();
       this.config_.layerGroups.forEach(group => {
         parentSelectOptions.push(group.label)
       })
-      console.log(parentSelectOptions)
+
+      let layerGroup_0 = this.config_.layerGroups[0];
+      layerGroup_0.layerGroup.forEach(group => {
+        let layers = new Array();
+        group.layersId.forEach(layerId => {
+          do {
+            this.legendLayers.forEach(layer => {
+              if (layer.id == layerId) {
+                let OptionLayer = {
+                  id: layer.id,
+                  legend: layer.layer.legend
+                }
+                layers.push(OptionLayer)
+                find = true;
+              }
+            })
+          } while (!find);
+        })
+        let options = {
+          optgroup: group.optgroup,
+          layers: layers
+        }
+        groups.push(options)
+      })
 
       this.templateVars = {
         vars: {
-          options: parentSelectOptions
+          parentOptions: parentSelectOptions,
+          nestedOptions: groups
         }
       }
 
-      this.template = templateNested
+      this.template = templateNestedOptgroup
     }
 
 
