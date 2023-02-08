@@ -83,9 +83,7 @@ export default class LayerSelectorControl extends M.Control {
 
     this.parentSelectLayer = html.querySelector("select#parentSelectLayer");
 
-    console.log(this.parentSelectLayer)
-
-    if (this.parentSelectLayer !=null) {
+    if (this.parentSelectLayer != null) {
       this.parentSelectLayer.addEventListener("change", () => {
         let value = this.parentSelectLayer.value;
         this.selectLayer.innerHTML = "";
@@ -253,9 +251,11 @@ export default class LayerSelectorControl extends M.Control {
       this.template = templateNestedOptgroup
     }
 
-    //Construccion de los select anidados con optgroup
+    //Construccion de los select anidados sin optgroup
     if (this.config_.nested && !this.config_.group) {
-      console.log("anidado sin grupos")
+      //console.log("anidado sin grupos")
+      
+      //TODO
 
       this.template = templateNested;
     }
@@ -263,7 +263,7 @@ export default class LayerSelectorControl extends M.Control {
 
 
 
-    console.log(this.templateVars)
+    //console.log(this.templateVars)
   }
 
   loadLayers() {
