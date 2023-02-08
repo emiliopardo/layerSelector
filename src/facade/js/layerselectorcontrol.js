@@ -30,6 +30,7 @@ export default class LayerSelectorControl extends M.Control {
     super(impl, "LayerSelector");
     this.config_ = config;
     this.selectLayer;
+    this.layer_;
     this.legendLayers = this.config_.legendLayers;
     this.checkConfig(this.config_);
   }
@@ -69,13 +70,23 @@ export default class LayerSelectorControl extends M.Control {
       })
       if (value == "all") {
         this.config_.legendLayers.forEach(element => {
-
-          this.map_.addLayers(element.layer)
+          this.layer_ = element.layer
+          this.map_.addLayers(this.layer_)
+          if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
+            let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
+            legend.updateLegend(this.layer_)
+          }
         })
       } else {
         this.config_.legendLayers.forEach(element => {
           if (element.id == value) {
-            this.map_.addLayers(element.layer)
+            this.layer_ = element.layer
+            this.map_.addLayers(this.layer_)
+
+            if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
+              let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
+              legend.updateLegend(this.layer_)
+            }
           }
         })
       }
@@ -254,7 +265,7 @@ export default class LayerSelectorControl extends M.Control {
     //Construccion de los select anidados sin optgroup
     if (this.config_.nested && !this.config_.group) {
       //console.log("anidado sin grupos")
-      
+
       //TODO
 
       this.template = templateNested;
@@ -269,15 +280,16 @@ export default class LayerSelectorControl extends M.Control {
   loadLayers() {
     if (this.config_.selectedLayerId == "all") {
       this.legendLayers.forEach(layer => {
-        this.map_.addLayers(layer.layer)
+        this.layer_ = layer.layer        
+        this.map_.addLayers(this.layer_)
       })
     } else {
       this.legendLayers.forEach(layer => {
         if (layer.id == this.config_.selectedLayerId) {
-          this.map_.addLayers(layer.layer)
+          this.layer_ = layer.layer
+          this.map_.addLayers(this.layer_)
         }
       })
-
     }
   }
 }
