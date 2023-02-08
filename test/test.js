@@ -103,11 +103,9 @@ fetch("https://emiliopardo.github.io/integracion-plugins/visores/web-components/
 
     mapajs.addPlugin(layerSelector);
 
-    // mapajs.on(M.evt.ADDED_LAYER, ()=>{
-    //   console.log("se cargo una capa")
-    //   simpleLegend.updateLegend();
-    // })
-
+    //abrimos el panel del plugin
+    layerSelector.panel_.open();
+    
 
   }).catch(err => {
     throw err
