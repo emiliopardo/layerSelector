@@ -31,6 +31,7 @@ export default class LayerSelectorControl extends M.Control {
     this.config_ = config;
     this.selectLayer;
     this.layer_;
+    this.layerList_;
     this.legendLayers = this.config_.legendLayers;
     this.checkConfig(this.config_);
   }
@@ -69,26 +70,26 @@ export default class LayerSelectorControl extends M.Control {
         this.map_.removeLayers(element.layer)
       })
       if (value == "all") {
+        this.layerList_ = new Array()
         this.config_.legendLayers.forEach(element => {
-          this.layer_ = element.layer
-          this.map_.addLayers(this.layer_)
-          if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
-            let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
-            legend.updateLegend(this.layer_)
-          }
+          this.layer_ = element.layer;
+          this.layerList_.push(this.layer_)
+          this.map_.addLayers(this.layerList_)
+
         })
       } else {
+        this.layerList_ = new Array()
         this.config_.legendLayers.forEach(element => {
           if (element.id == value) {
             this.layer_ = element.layer
-            this.map_.addLayers(this.layer_)
-
-            if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
-              let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
-              legend.updateLegend(this.layer_)
-            }
+            this.layerList_.push(this.layer_)
+            this.map_.addLayers(this.layerList_)
           }
         })
+      }
+      if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
+        let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
+        legend.updateLegend(this.layerList_)
       }
     })
 
@@ -279,17 +280,30 @@ export default class LayerSelectorControl extends M.Control {
 
   loadLayers() {
     if (this.config_.selectedLayerId == "all") {
+      this.layerList_ = new Array()
       this.legendLayers.forEach(layer => {
-        this.layer_ = layer.layer        
-        this.map_.addLayers(this.layer_)
+        this.layer_ = layer.layer
+        this.layerList_.push(this.layer_)
       })
+      this.map_.addLayers(this.layerList_);
+      console.log(this.layerList_)
+
+
     } else {
+      this.layerList_ = new Array()
       this.legendLayers.forEach(layer => {
         if (layer.id == this.config_.selectedLayerId) {
           this.layer_ = layer.layer
-          this.map_.addLayers(this.layer_)
+          this.layerList_.push(this.layer_)
+
+          this.map_.addLayers(this.layerList_)
         }
       })
+    }
+
+    if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
+      let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
+      legend.updateLegend(this.layerList_)
     }
   }
 }
