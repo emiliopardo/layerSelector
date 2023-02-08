@@ -83,7 +83,9 @@ export default class LayerSelectorControl extends M.Control {
 
     this.parentSelectLayer = html.querySelector("select#parentSelectLayer");
 
-    if (typeof (this.parentSelectLayer) != "undefined") {
+    console.log(this.parentSelectLayer)
+
+    if (this.parentSelectLayer !=null) {
       this.parentSelectLayer.addEventListener("change", () => {
         let value = this.parentSelectLayer.value;
         this.selectLayer.innerHTML = "";
