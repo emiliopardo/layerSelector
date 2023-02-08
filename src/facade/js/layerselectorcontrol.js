@@ -8,6 +8,7 @@ import LayerSelectorImplControl from 'impl/layerselectorcontrol';
 import template from 'templates/layerselector';
 import templateOptgroup from 'templates/layerselectorOptgroup';
 import templateNestedOptgroup from 'templates/layerselectorNestedOptgroup';
+import templateNested from 'templates/layerselectorNested';
 
 export default class LayerSelectorControl extends M.Control {
   /**
@@ -85,137 +86,41 @@ export default class LayerSelectorControl extends M.Control {
     if (typeof (this.parentSelectLayer) != "undefined") {
       this.parentSelectLayer.addEventListener("change", () => {
         let value = this.parentSelectLayer.value;
+        this.selectLayer.innerHTML = "";
+        let find = false;
+        do {
+          this.config_.layerGroups.forEach(layerGroup => {
+            if (layerGroup.label == value) {
+              let myOption = document.createElement("option");
+              myOption.text = "Seleccione una opción";
+              this.selectLayer.appendChild(myOption)
+              layerGroup.layerGroup.forEach(element => {
+                let optgroup = document.createElement("optgroup");
+                optgroup.label = element.optgroup;
+                this.selectLayer.appendChild(optgroup)
+                element.layersId.forEach(layersId => {
+                  let find = false;
+                  do {
+                    this.legendLayers.forEach(layer => {
+                      if (layer.id == layersId) {
+                        myOption = document.createElement("option");
+                        myOption.value = layersId
+                        myOption.text = layer.layer.legend
+                        optgroup.appendChild(myOption)
+                        find = true;
+                      }
+                    })
 
-        console.log(value)
+                  } while (!find);
+                })
+
+              })
+              find = true;
+            }
+          })
+        } while (!find);
       })
     }
-
-
-    // let selectContainer = html.querySelector("div#select-container");
-    // if (this.config_.legendLayers.length > 1) {
-    //   // GRUPOS DE CAPAS NO ANIDADAS
-    //   if (this.config_.nested == false) {
-    //     this.selectLayer = document.createElement("select");
-    //     this.selectLayer.name = "selectLayer";
-    //     this.selectLayer.id = "selectLayer";
-    //     if (this.config_.selectedLayerId == "all") {
-    //       let myOption = document.createElement("option");
-    //       myOption.text = "Todas las Capas";
-    //       myOption.value = "all";
-    //       myOption.selected = "selected";
-    //       this.selectLayer.appendChild(myOption);
-    //     } else if (this.config_.selectedLayerId == "none") {
-    //       let myOption = document.createElement("option");
-    //       myOption.text = "Seleccione una opción";
-    //       myOption.selected = "selected";
-    //       myOption.disabled = true;
-    //       this.selectLayer.appendChild(myOption);
-    //     }
-
-
-
-    //     // GRUPOS DE CAPAS ANIDADAS
-    //   } else if (this.config_.nested == true) {
-    //     this.parentSelectLayer = document.createElement("select");
-    //     this.parentSelectLayer.name = "parentSelectLayer";
-    //     this.parentSelectLayer.id = "parentSelectLayer";
-    //     this.config_.layerGroups.forEach(element => {
-    //       let myOption = document.createElement("option");
-    //       myOption.text = element.label;
-    //       myOption.value = element.label;
-    //       this.parentSelectLayer.appendChild(myOption)
-    //     })
-
-    //     this.selectLayer = document.createElement("select");
-    //     this.selectLayer.name = "selectLayer";
-    //     this.selectLayer.id = "selectLayer";
-    //     this.selectLayer.style.width = "70%";
-    //     // GRUPOS DE CAPAS ANIDADAS CON OPTGROUP	
-    //     if (this.config_.group == true) {
-    //       this.config_.layerGroups[0].layerGroup.forEach(group => {
-    //         let optgroup = document.createElement("optgroup");
-    //         optgroup.label = group.optgroup
-    //         this.selectLayer.appendChild(optgroup)
-    //         group.layersId.forEach(element => {
-    //           this.config_.legendLayers.forEach(legendlayer => {
-    //             if (legendlayer.id === element) {
-    //               let myOption = document.createElement("option");
-    //               myOption.text = legendlayer.layer.legend;
-    //               myOption.value = element;
-    //               optgroup.appendChild(myOption)
-    //             }
-    //           })
-    //         })
-    //       })
-    //     }
-
-    //     selectContainer.appendChild(this.parentSelectLayer)
-    //     selectContainer.appendChild(this.selectLayer)
-    //   }
-    // }
-    // if (typeof (this.parentSelectLayer) != "undefined") {
-    //   this.parentSelectLayer.addEventListener("change", () => {
-    //     this.selectLayer = document.querySelector("select#selectLayer");
-    //     console.log(this.config_.layerGroups)
-
-    //     this.selectLayer.innerHTML = "";
-    //     let myOption = document.createElement("option");
-    //     myOption.text = "Seleccione una opción";
-    //     myOption.disabled = true;
-    //     myOption.selected = true;
-    //     this.selectLayer.appendChild(myOption)
-    //     this.config_.layerGroups.forEach(element => {
-    //       if (element.label == this.value) {
-    //         element.layerGroup.forEach(group => {
-    //           let optgroup = document.createElement("optgroup");
-    //           optgroup.label = group.optgroup
-    //           this.selectLayer.appendChild(optgroup)
-    //           group.layersId.forEach(element => {
-    //             this.config_.legendLayers.forEach(legendlayer => {
-    //               if (legendlayer.id === element) {
-    //                 let myOption = document.createElement("option");
-    //                 myOption.text = legendlayer.layer.legend;
-    //                 myOption.value = element;
-    //                 optgroup.appendChild(myOption)
-    //               }
-    //             })
-    //           })
-    //         })
-
-    //       }
-    //     })
-
-    //   })
-
-    // }
-
-    // this.selectLayer.addEventListener("change", () => {
-    //   //si tenemos la opcion "Seleccione una capa" la borramos cuando se produce un change
-    //   if (this.selectLayer.options[0].value == "none") {
-    //     this.selectLayer.remove(0)
-    //   }
-    //   this.config_.legendLayers.forEach(element => {
-    //     this.map_.removeLayers(element.layer)
-    //   })
-
-    //   if (this.value == "all") {
-    //     let arrayLayers = new Array();
-    //     this.config_.legendLayers.forEach(element => {
-    //       this.map_.addLayers(element.layer)
-    //       arrayLayers.push(element.layer)
-
-    //       //simpleLegendPlugin.updateLegend(arrayLayers)
-    //     })
-    //   } else {
-    //     this.config_.legendLayers.forEach(element => {
-    //       console.log(this.value)
-    //       if (this.value == element.id) {
-    //         this.map_.addLayers(element.layer)
-    //         //simpleLegendPlugin.updateLegend(element.layer)
-    //       }
-    //     })
-    //   }
-    // }, false);
   }
 
 
@@ -254,7 +159,6 @@ export default class LayerSelectorControl extends M.Control {
       }
 
       this.template = template;
-      console.log("sin nested y sin grupos")
       this.config_.legendLayers.forEach((layer) => {
         let optionLayer = {
           id: layer.id,
@@ -346,6 +250,15 @@ export default class LayerSelectorControl extends M.Control {
 
       this.template = templateNestedOptgroup
     }
+
+    //Construccion de los select anidados con optgroup
+    if (this.config_.nested && !this.config_.group) {
+      console.log("anidado sin grupos")
+
+      this.template = templateNested;
+    }
+
+
 
 
     console.log(this.templateVars)
