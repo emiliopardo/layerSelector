@@ -288,9 +288,6 @@ export default class LayerSelectorControl extends M.Control {
         this.layerList_.push(this.layer_)
       })
       this.map_.addLayers(this.layerList_);
-      console.log(this.layerList_)
-
-
     } else {
       this.layerList_ = new Array()
       this.legendLayers.forEach(layer => {
