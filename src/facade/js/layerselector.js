@@ -25,6 +25,13 @@ export default class LayerSelector extends M.Plugin {
      */
     this.map_ = null;
     this.config_ = config;
+    this.position_ = this.config_.position || 'TR';
+
+    if (this.position_ === 'TL' || this.position_ === 'BL') {
+      this.positionClass_ = 'left';
+    } else {
+      this.positionClass_ = 'right';
+    }
 
     /**
      * Array of controls
@@ -64,8 +71,9 @@ export default class LayerSelector extends M.Plugin {
       // collapsible: false,
       collapsible: true,
       collapsedButtonClass: 'g-cartografia-capas2',
-      className: 'm-layer-selector',
-      position: M.ui.position.TR,
+      className: `m-layer-selector ${this.positionClass_}`,
+      position: M.ui.position[this.position_],
+      tooltip: 'Selector de Capas',
     });
     this.panel_.addControls(this.controls_);
     this.panel_.on(M.evt.ADDED_TO_MAP, () => {
