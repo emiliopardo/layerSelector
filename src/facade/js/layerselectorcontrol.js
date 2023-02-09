@@ -54,9 +54,6 @@ export default class LayerSelectorControl extends M.Control {
   }
 
   addEvents(html) {
-    //se carga la/as capas establecidas de inicio
-    this.loadLayers()
-
     this.selectLayer = html.querySelector("select#selectLayer");
     //listener para controlar el evento change del selectLayer
     this.selectLayer.addEventListener("change", () => {
@@ -133,6 +130,9 @@ export default class LayerSelectorControl extends M.Control {
         } while (!find);
       })
     }
+
+    //se carga la/as capas establecidas de inicio
+    this.loadLayers()
   }
 
 
@@ -299,6 +299,20 @@ export default class LayerSelectorControl extends M.Control {
           this.map_.addLayers(this.layerList_)
         }
       })
+      let find = false
+
+      do {
+
+        for (let index = 0; index < this.selectLayer.length; index++) {
+          const element = this.selectLayer.options[index].value;
+          if (element == this.config_.selectedLayerId) {
+            this.selectLayer.options[index].selected = true;
+            find = true;
+          }
+        }
+      } while (!find);
+
+
     }
 
     if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
