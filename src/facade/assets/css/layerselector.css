@@ -24,6 +24,7 @@
 }
 
 .m-areas>div.m-area>div.m-panel.m-layer-selector {
+  order: -4 !important;
   background: none !important;
   box-shadow: none !important;
 }
@@ -40,7 +41,7 @@
   /* position: absolute; */
   /* left: -40px; */
   background-color: #087021;
-  color: #fff;
+  color: #fff!important;
   z-index: 999999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .2), 0 -1px 0 rgba(0, 0, 0, .02);
 }
@@ -74,6 +75,7 @@
   position: absolute;
   right: 0px !important;
   width: max-content;
+  min-width: 339px;
   padding: 12px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .7);
 }
