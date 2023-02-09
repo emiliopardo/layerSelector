@@ -1,22 +1,3 @@
-/* .m-areas>div.m-area>div.m-panel.m-tools.collapsed>button.m-panel-btn {
-  color: #087021;
-}
-
-.m-areas>div.m-area>div.m-panel.m-tools>button.m-panel-btn {
-  background-color: #087021;
-}
-
-
-
-
-.m-areas>div.m-area>div.m-panel.m-tools>div.m-panel-controls>div.m-control.activated>button {
-  color: #087021;
-}
-
-.m-areas>div.m-area>div.m-panel.m-location>div.m-panel-controls>div.m-control.activated>button {
-  color: #087021;
-} */
-
 .m-areas>div.m-area>div.m-panel.m-layer-selector.collapsed>button.m-panel-btn {
   border-radius: 20px;
   float: left;
@@ -38,8 +19,6 @@
 }
 
 .m-areas>div.m-area>div.m-panel.m-layer-selector>button.m-panel-btn {
-  /* position: absolute; */
-  /* left: -40px; */
   background-color: #087021;
   color: #fff!important;
   z-index: 999999;
@@ -81,7 +60,7 @@
 }
 
 #select-container {
-  float: left;
+  /* float: left; */
   display: flex;
 }
 
