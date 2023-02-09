@@ -1,6 +1,6 @@
-import M$plugin$LayerSelector from '/home/epardo/proyectos/layerSelector/src/facade/js/layerselector';
-import M$control$LayerSelectorControl from '/home/epardo/proyectos/layerSelector/src/facade/js/layerselectorcontrol';
-import M$impl$control$LayerSelectorControl from '/home/epardo/proyectos/layerSelector/src/impl/ol/js/layerselectorcontrol';
+import M$plugin$LayerSelector from '/home/emilio/proyectos/ieca/layerselector/src/facade/js/layerselector';
+import M$control$LayerSelectorControl from '/home/emilio/proyectos/ieca/layerselector/src/facade/js/layerselectorcontrol';
+import M$impl$control$LayerSelectorControl from '/home/emilio/proyectos/ieca/layerselector/src/impl/ol/js/layerselectorcontrol';
 
 if (!window.M.plugin) window.M.plugin = {};
 if (!window.M.control) window.M.control = {};
