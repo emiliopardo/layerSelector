@@ -84,10 +84,14 @@ export default class LayerSelectorControl extends M.Control {
           }
         })
       }
-      if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
-        let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
-        legend.updateLegend(this.layerList_)
-      }
+    // if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
+    //   let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
+    //   legend.updateLegend(this.layerList_)
+    // }
+    if (this.map_.getControls({ 'name': 'Legend' }).length > 0) {
+      let legend = this.map_.getControls({ 'name': 'Legend' })[0];
+      legend.setLegend(this.layerList_)
+    }
     })
 
     this.parentSelectLayer = html.querySelector("select#parentSelectLayer");
@@ -314,9 +318,13 @@ export default class LayerSelectorControl extends M.Control {
 
     }
 
-    if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
-      let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
-      legend.updateLegend(this.layerList_)
+    // if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
+    //   let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
+    //   legend.updateLegend(this.layerList_)
+    // }
+    if (this.map_.getControls({ 'name': 'Legend' }).length > 0) {
+      let legend = this.map_.getControls({ 'name': 'Legend' })[0];
+      legend.setLegend(this.layerList_)
     }
   }
 }
