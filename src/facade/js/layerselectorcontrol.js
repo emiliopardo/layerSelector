@@ -132,7 +132,9 @@ export default class LayerSelectorControl extends M.Control {
     }
 
     //se carga la/as capas establecidas de inicio
-    this.loadLayers()
+    if (this.config_.selectedLayerId != "none") {
+      this.loadLayers()
+    } 
   }
 
 
