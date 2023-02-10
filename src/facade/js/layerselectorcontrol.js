@@ -91,6 +91,7 @@ export default class LayerSelectorControl extends M.Control {
     if (this.map_.getControls({ 'name': 'Legend' }).length > 0) {
       let legend = this.map_.getControls({ 'name': 'Legend' })[0];
       legend.setLegend(this.layerList_)
+      legend.panel_.open();
     }
     })
 
@@ -325,6 +326,7 @@ export default class LayerSelectorControl extends M.Control {
     if (this.map_.getControls({ 'name': 'Legend' }).length > 0) {
       let legend = this.map_.getControls({ 'name': 'Legend' })[0];
       legend.setLegend(this.layerList_)
+      legend.panel_.open();
     }
   }
 }
