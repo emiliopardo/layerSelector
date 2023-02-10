@@ -11,12 +11,10 @@
 }
 
 .m-areas>div.m-area>div.m-panel.m-layer-selector.collapsed>button.m-panel-btn {
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, .2), 0 -1px 0 rgba(0, 0, 0, .02)!important; */
   box-shadow: 0 2px 4px rgb(0 0 0 / 70%)!important;
 }
 
 .m-areas>div.m-area>div.m-panel.m-layer-selector, div.m-panel.m-layer-selector>button {
-  /* box-shadow: 0 2px 4px rgba(0,0,0,.2),0 -1px 0 rgba(0,0,0,.02); */
   box-shadow: 0 2px 4px rgb(0 0 0 / 70%)!important;
 }
 
@@ -24,7 +22,6 @@
   background-color: #087021;
   color: #fff!important;
   z-index: 999999;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, .2), 0 -1px 0 rgba(0, 0, 0, .02); */
   box-shadow: 0 2px 4px rgb(0 0 0 / 70%)!important;
 }
 
