@@ -45,7 +45,7 @@
 }
 
 #selector-container {
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: 'Source Sans Pro', sans-serif !important;
   font-size: 1em;
   font-weight: bold;
   color: #666 !important;
