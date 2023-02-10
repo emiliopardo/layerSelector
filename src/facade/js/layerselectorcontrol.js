@@ -8,7 +8,7 @@ import LayerSelectorImplControl from 'impl/layerselectorcontrol';
 import template from 'templates/layerselector';
 import templateOptgroup from 'templates/layerselectorOptgroup';
 import templateNestedOptgroup from 'templates/layerselectorNestedOptgroup';
-import templateNested from 'templates/layerselectorNested';
+// import templateNested from 'templates/layerselectorNested';
 
 export default class LayerSelectorControl extends M.Control {
   /**
@@ -84,15 +84,11 @@ export default class LayerSelectorControl extends M.Control {
           }
         })
       }
-    // if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
-    //   let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
-    //   legend.updateLegend(this.layerList_)
-    // }
-    if (this.map_.getControls({ 'name': 'Legend' }).length > 0) {
-      let legend = this.map_.getControls({ 'name': 'Legend' })[0];
-      legend.setLegend(this.layerList_)
-      //legend.panel_.open();
-    }
+
+      if (this.map_.getControls({ 'name': 'Legend' }).length > 0) {
+        let legend = this.map_.getControls({ 'name': 'Legend' })[0];
+        legend.setLegend(this.layerList_)
+      }
     })
 
     this.parentSelectLayer = html.querySelector("select#parentSelectLayer");
@@ -139,7 +135,7 @@ export default class LayerSelectorControl extends M.Control {
     //se carga la/as capas establecidas de inicio
     if (this.config_.selectedLayerId != "none") {
       this.loadLayers()
-    } 
+    }
   }
 
 
@@ -269,20 +265,11 @@ export default class LayerSelectorControl extends M.Control {
 
       this.template = templateNestedOptgroup
     }
-
+    //TODO
     //Construccion de los select anidados sin optgroup
-    if (this.config_.nested && !this.config_.group) {
-      //console.log("anidado sin grupos")
-
-      //TODO
-
-      this.template = templateNested;
-    }
-
-
-
-
-    //console.log(this.templateVars)
+    // if (this.config_.nested && !this.config_.group) {
+    //   this.template = templateNested;
+    // }
   }
 
   loadLayers() {
@@ -319,14 +306,9 @@ export default class LayerSelectorControl extends M.Control {
 
     }
 
-    // if (this.map_.getControls({ 'name': 'Simplelegend' }).length > 0) {
-    //   let legend = this.map_.getControls({ 'name': 'Simplelegend' })[0];
-    //   legend.updateLegend(this.layerList_)
-    // }
     if (this.map_.getControls({ 'name': 'Legend' }).length > 0) {
       let legend = this.map_.getControls({ 'name': 'Legend' })[0];
       legend.setLegend(this.layerList_)
-      //legend.panel_.open();
     }
   }
 }
