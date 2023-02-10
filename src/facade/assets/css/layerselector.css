@@ -55,12 +55,11 @@
   right: 0px !important;
   width: max-content;
   min-width: 339px;
-  padding: 12px;
+  padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .7);
 }
 
 #select-container {
-  /* float: left; */
   display: flex;
 }
 
